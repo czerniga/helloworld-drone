@@ -1,14 +1,16 @@
 kind: pipeline
 type: docker
 name: default
+
 steps:
-- name: build
-  image: maven:latest
+- name: backend
+  image: golang
   commands:
-  - echo "Compiling the code..."
-  - mvn clean package
-- name: test
-  image: maven:latest
+  - go build
+  - go test
+
+- name: frontend
+  image: node
   commands:
-  - echo "Running tests"
-  - java -cp target/helloworld-1.1.jar com.coveros.demo.helloworld.HelloWorld
+  - npm install
+  - npm test
