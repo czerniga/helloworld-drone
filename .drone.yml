@@ -1,12 +1,12 @@
 pipeline:
 - name: build
-  image: maven:latest
+  image: maven:3-jdk-10
   commands:
   - echo "Compiling the code..."
   - mvn clean package
 
 - name: test
-  image: maven:latest
+  image: maven:3-jdk-10
   commands:
   - echo "Running tests"
   - java -cp target/helloworld-1.1.jar com.coveros.demo.helloworld.HelloWorld
