@@ -1,12 +1,12 @@
 pipeline:
-  name: backend
-  image: golang
+- name: build
+  image: maven:latest
   commands:
-    go build
-    go test
+  - echo "Compiling the code..."
+  - mvn clean package
 
-  name: frontend
-  image: node
+- name: test
+  image: maven:latest
   commands:
-    npm install
-    npm test
+  - echo "Running tests"
+  - java -cp target/helloworld-1.1.jar com.coveros.demo.helloworld.HelloWorld
